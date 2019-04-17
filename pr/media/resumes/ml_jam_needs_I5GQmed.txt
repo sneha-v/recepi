@@ -1,0 +1,15 @@
+dgdgevent
+4NB4we
+nasdaq.zoom.us/j/20204724
+
+
+
+gapminder.com
+cross validation
+tensorflow
+
+Machine Learning using TensorFlow on GCP - Specialization 
+
+f1 score
+
+bias and variance
