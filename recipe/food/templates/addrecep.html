@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<style>
+body {
+  background-image: url(https://cdn.pixabay.com/photo/2016/01/23/10/29/texture-1157194_960_720.jpg) ;
+  background-position: center center;
+  background-repeat:  no-repeat;
+  background-attachment: fixed;
+  background-size:  cover;
+  background-color: #999;
+  margin: auto;
+}
+</style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">Appetite</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+
+        <a class="nav-item nav-link" href="/profile/">Profile</a>
+        </div>
+
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/signout/"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+  </nav>
+
+  <div class="container panel panel-danger col-md-6 col-sm-6 col-xs-12 text-center" style="margin-top:100px;padding:0;border-color:#d1c4e9;box-shadow: 0 1px 7px 0.05px #ac8fe3;height:700px;">
+    <h1>{{error}}</h1>
+    <div class="panel-heading" style="padding:10px 10px 50px 20px;height:45px;background-color:blue;border-color:blue;">
+				<h2 class="panel-title" style="color:white;">ADD RECEIPES</h2>
+    </div>
+    <div class="panel-body" style="padding:20px 20px 0px 20px;background-color:lightblue;height:600px;overflow:auto;">
+    <form action="/adding_recep/{{number| length}}/" method="post">
+      {% csrf_token %}
+      <label for="cui_name">Cuisine name</label>
+      <input id = "cui_name" type="text" name="cui_name" value="">
+      <br>
+      <label for="rec_name">Recepi name</label>
+      <input id="rec_name" type="text" name="rec_name" value="">
+      <br>
+      <h2>Items List</h2>
+      <br>
+    {% for i in number %}
+    <input  type="text" name="recipe{{i}}" placeholder="item name"> -- > <input type="text" name="quantity{{i}}" placeholder="item quantity">
+    <br><br>
+    {% endfor %}
+    <br>
+    <textarea name="procedure" rows="8" cols="70" placeholder="enter the procedure"></textarea>
+    <br>
+    <input class="btn btn-primary" style="margin-top:30px;" type="submit" name="" value="Submit">
+    </form>
+  </div>
+    <br><br>
+    <br><br>
+<!-- <div class="text-center"><a href="/findcuisine/" class="btn-card">Find</a></div> -->
+
+
+</div>
+  </body>
+</html>

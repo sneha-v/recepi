@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<style>
+
+.CustomCard {
+  padding-top: 20px;
+  margin: 10px 0 20px 0;
+  background-color: rgba(214, 224, 226, 0.2);
+  border-top-width: 0;
+  border-bottom-width: 2px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 15px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.CustomCard.hoverCustomCard {
+  position: relative;
+  padding-top: 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+.CustomCard.hoverCustomCard .CustomCardheader {
+  background-size: cover;
+  height: 85px;
+}
+
+.CustomCard.hoverCustomCard .bottom {
+  padding: 20px 5px;
+  margin-bottom: -6px;
+  text-align: center;
+}
+body {
+  background-image: url(https://cdn.pixabay.com/photo/2017/03/27/12/26/macaroons-2178371__340.jpg) ;
+  background-position: center center;
+  background-repeat:  no-repeat;
+  background-attachment: fixed;
+  background-size:  cover;
+  background-color: #999;
+  margin: auto;
+}
+</style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">Appetite</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+
+        
+         <a class="nav-item nav-link" href="/profile/">Profile</a>
+          <a class="nav-item nav-link" data-toggle="modal" href="#myModal">Add Recepi</a>
+
+      </div>
+
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/signout/"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+  </nav>
+  <div class="container">
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+<div class="modal-dialog">
+<div class="modal-content">
+
+  <!-- Modal Header -->
+  <div class="modal-header">
+    <h4 class="modal-title" style="color:black;">Add Recepi</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+  </div>
+
+  <!-- Modal body -->
+  <div class="modal-body text-center">
+    <form class="" action="/addrecep/" method="post">
+      {% csrf_token %}
+      <label for="items" style="color:black;">Items: </label>
+      <input  id="items" type="number" style="margin-left:10px;" name="items" placeholder="  Number of items">
+      <br><br>
+      <input class="btn btn-success btn-sm" type="submit" name="" value="Submit">
+
+    </form>
+  </div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="container">
+	<div class="row" style="margin-top:180px;">
+	 <div class="col col-sm-12" style="text-align:center;">
+        <div class="CustomCard hoverCustomCard" style="border-color:#d1c4e9;box-shadow: 0 1px 7px 2px #667fd8;">
+            <div class="CustomCardheader text-white btn-primary">
+                <h2 style="padding-top:20px;"><i>Do you want to see recipes of {{prediction}} cuisine?</i></h2>
+
+            </div>
+            <div class="col-sm-12" style="padding:20px;background-color:white;">
+                <a  href="/reclist/{{prediction}}/" class="btn btn-success">Yes</a>
+                <a href="#myModal2" data-toggle="modal" class="btn btn-danger">No</a>
+            </div>
+        </div>
+    </div>
+	</div>
+</div>
+<!-- visit our site at https://reezhdesign.com -->
+    <!--<div class="container" style = "margin-top:100px">
+      <h2><i>Do you want to see recipes of {{prediction}} cuisine?</i></h2>
+        <a href="/reclist/{{prediction}}/" class=" btn btn-success">Yes</a>
+        <a href="#myModal2" data-toggle="modal" class="btn btn-success">No</a>
+      </div>-->
+      <!-- <button type="button" class="btn-success" data-toggle="modal" data-target="#myModal">
+        No
+      </button> -->
+      <!--<div class="container">
+<!-- The Modal -->
+<div class="modal fade" id="myModal2">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" style="color:black;">Cuisine</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body text-center">
+        <form class="" action="/reclist/cuisine/" method="post">
+          {% csrf_token %}
+          <label for="items" style="color:black;">Cuisine name: </label>
+          <input  id="items" type="text" style="margin-left:10px;" name="cui_name" placeholder="  cuisine name">
+          <br><br>
+          <input class="btn btn-success btn-sm" type="submit" name="" value="Submit">
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+
+    </div>
+
+  </body>
+</html>
